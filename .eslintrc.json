@@ -61,6 +61,8 @@
   "settings": {
     "import/resolver": {
       "typescript": {}
-    }
+    },
+    "eslint-disable comma-dangle": "off",
+    "eslint-disable-next-line semi": "off"
   }
 }
