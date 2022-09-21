@@ -1,9 +1,8 @@
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
-import 'reflect-metadata';
 import swaggerUi from 'swagger-ui-express';
 
-import './database';
+import { createConnection } from './database';
 
 import './shared/container';
 import { AppError } from './errors/AppError';
@@ -17,6 +16,8 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(router);
+
+createConnection();
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {

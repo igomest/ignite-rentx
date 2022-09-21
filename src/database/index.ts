@@ -1,14 +1,15 @@
 import { DataSource } from 'typeorm';
+
 import { User } from '../modules/accounts/entities/User';
 import { Category } from '../modules/cars/entities/Category';
 import { Specification } from '../modules/cars/entities/Specification';
 
 console.log(__dirname);
 
-export default new DataSource({
+const dataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
-  port: 6508,
+  port: 5432,
   username: 'docker',
   password: 'ignite',
   database: 'rentx',
@@ -17,3 +18,9 @@ export default new DataSource({
   entities: [Category, Specification, User],
   migrations: [`${__dirname}/migrations/*.ts`],
 });
+
+export function createConnection(host = 'database'): Promise<DataSource> {
+  return dataSource.setOptions({ host }).initialize();
+}
+
+export default dataSource;
