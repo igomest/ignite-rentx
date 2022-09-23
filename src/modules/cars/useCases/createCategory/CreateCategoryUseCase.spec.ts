@@ -1,7 +1,7 @@
 /* eslint-disable comma-dangle */
 
 import { AppError } from '@errors/AppError';
-import { CategoriesRepositoryInMemory } from '@modules/cars/repositories/in-memory/CategoriesRepositoryInMemory';
+import { CategoriesRepositoryInMemory } from '@modules/cars/infra/repositories/in-memory/CategoriesRepositoryInMemory';
 
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
