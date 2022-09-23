@@ -2,8 +2,9 @@ import dataSource from 'database';
 import { Repository } from 'typeorm';
 
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
-import { User } from '@modules/accounts/entities/User';
 import { IUsersRepository } from '@modules/accounts/Repositories/IUsersRepository';
+
+import { User } from '../typeorm/entities/User';
 
 class UsersRepository implements IUsersRepository {
   private repository: Repository<User>;
