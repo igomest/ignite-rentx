@@ -2,15 +2,14 @@
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import swaggerUi from 'swagger-ui-express';
+import 'reflect-metadata';
 
-import { AppError } from '@errors/AppError';
+import '../../container';
 
-import { createConnection } from './database';
-
-import './shared/container';
-
+import { createConnection } from '@shared/infra/typeorm';
+import swaggerFile from 'swagger.json';
+import { AppError } from '@shared/errors/AppError';
 import { router } from './routes';
-import swaggerFile from './swagger.json';
 
 const app = express();
 
@@ -34,7 +33,7 @@ app.use(
       status: 'error',
       message: `Internal server error - ${err.message}`,
     });
-  }
+  },
 );
 
 app.listen(3333, () => console.log('Server is running!'));

@@ -4,12 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn --poll src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn --poll src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "migration:create": "yarn typeorm migration:create ./src/database/migrations/",
-    "migration:run": "yarn typeorm migration:run -d ./src/database/index.ts",
-    "migration:revert": "yarn typeorm migration:revert -d ./src/database/index.ts",
-    "migration:generate": "yarn typeorm migration:generate -d ./src/database/index.ts",
+    "migration:create": "yarn typeorm migration:create -n ./src/shared/infra/typeorm/migrations/",
+    "migration:run": "yarn typeorm migration:run -d ./src/shared/infra/typeorm/index.ts",
+    "migration:revert": "yarn typeorm migration:revert -d ./src/infra/shared/typeorm/index.ts",
+    "migration:generate": "yarn typeorm migration:generate -d ../src/shared/infra/typeorm/index.ts",
     "test": "jest"
   },
   "dependencies": {
