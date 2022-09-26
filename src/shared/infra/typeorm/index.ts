@@ -1,10 +1,11 @@
 import { DataSource } from 'typeorm';
 
-import { User } from '@modules/accounts/infra/typeorm/entities/User';
-import { Category } from '@modules/cars/infra/entities/Category';
-import { Specification } from '@modules/cars/infra/entities/Specification';
+import { User } from '../../../modules/accounts/infra/typeorm/entities/User';
+import { Car } from '../../../modules/cars/infra/entities/Car';
+import { Category } from '../../../modules/cars/infra/entities/Category';
+import { Specification } from '../../../modules/cars/infra/entities/Specification';
 
-console.log(__dirname);
+console.log({ __dirname });
 
 const dataSource = new DataSource({
   type: 'postgres',
@@ -15,7 +16,7 @@ const dataSource = new DataSource({
   database: 'rentx',
   synchronize: false,
   logging: false,
-  entities: [Category, Specification, User],
+  entities: [Category, Specification, User, Car],
   migrations: [`${__dirname}/migrations/*.ts`],
 });
 
