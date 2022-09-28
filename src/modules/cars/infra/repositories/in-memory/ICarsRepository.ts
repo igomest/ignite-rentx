@@ -8,8 +8,9 @@ interface ICarsRepository {
   findAvailable(
     brand?: string,
     category_id?: string,
-    name?: string
-  ): Promise<Car[]>;
+    name?: string,
+  ): Promise<Car[]>
+  findById(id: string): Promise<Car>
 }
 
 export { ICarsRepository };

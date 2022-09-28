@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 import {
   ICreateSpecificationDTO,
@@ -22,12 +22,20 @@ class SpecificationsRepository implements ISpecificationsRepository {
     });
 
     await this.repository.save(specification);
+
+    return specification;
   }
 
   async findByName(name: string): Promise<Specification> {
     const specification = await this.repository.findOneBy({ name });
 
     return specification;
+  }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications = await this.repository.findBy({ id: In(ids) });
+
+    return specifications;
   }
 }
 

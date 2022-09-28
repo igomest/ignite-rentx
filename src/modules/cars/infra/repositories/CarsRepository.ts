@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 import { Repository } from 'typeorm';
 
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
@@ -21,6 +22,8 @@ class CarsRepository implements ICarsRepository {
     fine_amount,
     brand,
     category_id,
+    specifications,
+    id
   }: ICreateCarDTO): Promise<Car> {
     const car = this.repository.create({
       name,
@@ -30,6 +33,8 @@ class CarsRepository implements ICarsRepository {
       fine_amount,
       brand,
       category_id,
+      specifications,
+      id,
     });
 
     await this.repository.save(car);
@@ -48,7 +53,7 @@ class CarsRepository implements ICarsRepository {
   async findAvailable(
     brand?: string,
     category_id?: string,
-    name?: string,
+    name?: string
   ): Promise<Car[]> {
     const carsQuery = await this.repository
       .createQueryBuilder('c')
@@ -69,6 +74,12 @@ class CarsRepository implements ICarsRepository {
     const cars = await carsQuery.getMany();
 
     return cars;
+  }
+
+  async findById(id: string): Promise<Car> {
+    const car = await this.repository.findOneBy({ id });
+
+    return car;
   }
 }
 
